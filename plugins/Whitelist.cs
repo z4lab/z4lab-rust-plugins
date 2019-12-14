@@ -94,7 +94,7 @@ namespace Oxide.Plugins
                 //["CommandUsage"] = "Verbrauch: {0} < Name oder Id> <erlaubnis>",
                 //["NoPlayersFound"] = "Keine Spieler wurden durch '{0}' gefunden",
                 //["NotAllowed"] = "Sie sind nicht berechtigt, verwenden Sie den Befehl '{0}'",
-                ["NotWhitelisted"] = "Du bist nicht zugelassenen",
+                ["NotWhitelisted"] = "Du bist nicht auf der Whitelist des Servers!",
                 //["Whitelisted"] = ""
             }, this, "de");
 
@@ -130,40 +130,6 @@ namespace Oxide.Plugins
         }
 
         object CanUserLogin(string name, string id) => !IsWhitelisted(id) ? Lang("NotWhitelisted", id) : null;
-
-        /*[Command("whitelist", "wl")]
-        void Command(IPlayer player, string command, string[] args)
-        {
-            if (!player.HasPermission(permAdmin))
-            {
-                player.Reply(Lang("NotAllowed", player.Id, command));
-                return;
-            }
-
-            if (args.Length == 0)
-            {
-                player.Reply(Lang("CommandUsage", player.Id, command));
-                return;
-            }
-
-            var target = players.FindPlayer(string.Join(" ", args.ToArray()));
-            if (target == null)
-            {
-                player.Reply(Lang("NoPlayersFound", player.Id, args[0]));
-                return;
-            }
-
-            if (args[0] == "remove")
-            {
-                permission.RevokeUserPermission(target.Id, permAllow, this);
-                player.Reply(Lang("Whitelisted", player.Id, args[0]));
-            }
-            else
-            {
-                permission.GrantUserPermission(target.Id, permAllow, this);
-                player.Reply(Lang("Whitelisted", player.Id, args[0]));
-            }
-        }*/
 
         #endregion
 
